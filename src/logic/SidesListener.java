@@ -33,9 +33,6 @@ public class SidesListener implements KeyListener {
         if (e.getKeyCode() == 39) {
             threadDown.right();
         }
-        if (e.getKeyCode() == 32) {
-            threadDown.rotate();
-        }
         //Przyśpieszenie opuszczania
         if (e.getKeyCode() == 40) {
             if (RaceSettings.interval % 10 == 0) {

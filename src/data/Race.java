@@ -15,21 +15,7 @@ public class Race {
     public Race(int rows, int cols) {
         table = new boolean[rows][cols];
     }
-
-    public void random(int height) {
-        if (height < table.length) {
-            for (int i = table.length - height; i < table.length; i++) {
-                for (int j = 0; j < table[0].length; j++) {
-                    if (Math.random() < 0.5) {
-                        table[i][j] = true;
-                    }
-                }
-            }
-        } else {
-            throw new IllegalArgumentException("Liczba losowanych wierszy jest większa od wielkości planszy!");
-        }
-    }
-
+  
     public boolean getElement(int row, int col) {
         return table[row][col];
     }

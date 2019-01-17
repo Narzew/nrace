@@ -77,40 +77,32 @@ public class ThreadDown extends Thread {
         component.repaint();
     }
 
-    public void rotate() {
-        race.clear(w, k, block.getTable());
-        if (race.isPlace(w, k, block.getRotated())) {
-            block.rotate();
-        }
+    private int interval;
+
+    public void initializeRace(){
+        int blockHeight;
+        block = new Vehicle();
+        int c = (int) (Math.random() * 5);
+        blockHeight = block.getTable().length;
+        w = RaceSettings.rowCount - blockHeight;
+        k = RaceSettings.colCount / 2;
         race.draw(w, k, block.getTable());
         component.repaint();
     }
-
-    private int interval;
-
+    
     @Override
     public void run() {
-        int blockHeight;
+       initializeRace();
+        // Dopóki trwa wyścig
         while (race.isEmpty(3)) {
-            block = new Vehicle();
-            int c = (int) (Math.random() * 5);
-            for (int i = 0; i < c; i++) {
-                block.rotate();
-            }
-            blockHeight = block.getTable().length;
-            w = 5 - blockHeight;
-            k = RaceSettings.colCount / 2;
-
-            race.draw(w, k, block.getTable());
-            component.repaint();
-
+            // Move the whole board down
             interval = RaceSettings.interval;
-
             try {
                 Thread.sleep(interval);
             } catch (InterruptedException ex) {
                 return;
             }
+            race.moveDown(1);
             race.clear(w, k, block.getTable());
             while (race.isPlace(w + 1, k, block.getTable())) {
                 w++;

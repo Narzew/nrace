@@ -14,7 +14,6 @@ public class RaceAction {
     
     public void createRace(){
         race = new Race(RaceSettings.rowCount, RaceSettings.colCount);
-        race.random(RaceSettings.randCount);
         race.delete();
     }
 

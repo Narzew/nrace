@@ -17,7 +17,7 @@ public class RaceSettings {
     /**
      * Ilość zajętych losowo wierszy.
      */
-    public static int randCount = 8;
+    public static int randCount = 0;
     /**
      * Wielkość pola planszy.
      */
