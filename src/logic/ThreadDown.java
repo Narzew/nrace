@@ -103,11 +103,20 @@ public class ThreadDown extends Thread {
     }
     
     public void checkCollision(){
+        int truetimes = 0;
         tablea = race.getTable();
-        for(int i=0;i<tablea.length;i++){
-                if(tablea[w][k] == true){
-                    endGame();
+        if(tablea[w][k] == true){
+            endGame();
+        } else {
+            for(int i=0;i<RaceSettings.colCount-1;i++){
+                if(tablea[w][i] == true){
+                    truetimes++;
+                    if(truetimes>1){
+                        RaceSettings.temp_score+=1;
+                        RaceSettings.score = (int)RaceSettings.temp_score/5;
+                    }
                 }
+            }
         }
         
     }

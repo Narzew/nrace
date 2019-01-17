@@ -34,6 +34,7 @@ public class RaceSettings {
      * Aktualny wynik gry.
      */
     public static int score = 0;
+    public static int temp_score = 0;
     /**
      * Łuk do rysowania tetrisa.
      */
