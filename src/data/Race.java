@@ -1,6 +1,7 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.Random;
 import logic.RaceSettings;
 import mdtools.MDApplication;
 
@@ -9,7 +10,8 @@ import mdtools.MDApplication;
  * @author Michał Dolecki <michal.dolecki@kul.pl>
  */
 public class Race {
-
+    
+    Random rand = new Random();
     private boolean table[][];
 
     public Race(int rows, int cols) {
@@ -143,6 +145,37 @@ public class Race {
 //                MDApplication.sleep(50);
                 moveDown(toDelete[i]);
             }
+        }
+    }
+    
+    public void putRandomVehicle(int i){
+        int j = rand.nextInt(RaceSettings.colCount-3);
+        if(i+3<table.length){
+                table[i][0+j] = true;
+                table[i][1+j] = false;
+                table[i][2+j] = true;
+                table[i-1][0+j] = false;
+                table[i-1][1+j] = true;
+                table[i-1][2+j] = false;
+                table[i-2][0+j] = true;
+                table[i-2][1+j] = true;
+                table[i-2][2+j] = true;
+                table[i-3][0+j] = false;
+                table[i-3][1+j] = true;
+                table[i-3][2+j] = false;
+        }
+    }
+    
+    // height = 4
+    public void putRandomVehicles() {
+        if (4 < table.length) {
+            for (int i = table.length - 4; i < table.length; i++) {
+                    if (Math.random() < 0.75) {
+                        putRandomVehicle(7);
+                    }
+            }
+        } else {
+            throw new IllegalArgumentException("Liczba losowanych wierszy jest większa od wielkości planszy!");
         }
     }
 }

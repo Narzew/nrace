@@ -39,7 +39,7 @@ public class RacePanel extends javax.swing.JPanel {
         for (int i = 4; i < w; i++) {
             for (int j = 0; j < k; j++) { 
                 if (table[i][j]) {
-                    g.setColor(Color.red);
+                    g.setColor(Color.green);
                     g.fillRoundRect(j * size + marginLeft, (i - 4) * size + marginTop, size, size, arc, arc);
                     g.setColor(Color.black);
                     g.drawRoundRect(j * size + marginLeft, (i - 4) * size + marginTop, size, size, arc, arc);
