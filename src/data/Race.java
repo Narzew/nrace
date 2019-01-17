@@ -148,34 +148,24 @@ public class Race {
         }
     }
     
-    public void putRandomVehicle(int i){
-        int j = rand.nextInt(RaceSettings.colCount-3);
-        if(i+3<table.length){
-                table[i][0+j] = true;
-                table[i][1+j] = false;
-                table[i][2+j] = true;
-                table[i-1][0+j] = false;
-                table[i-1][1+j] = true;
-                table[i-1][2+j] = false;
-                table[i-2][0+j] = true;
-                table[i-2][1+j] = true;
-                table[i-2][2+j] = true;
-                table[i-3][0+j] = false;
-                table[i-3][1+j] = true;
-                table[i-3][2+j] = false;
-        }
-    }
-    
-    // height = 4
-    public void putRandomVehicles() {
-        if (4 < table.length) {
-            for (int i = table.length - 4; i < table.length; i++) {
-                    if (Math.random() < 0.75) {
-                        putRandomVehicle(7);
-                    }
+    public void putRandomVehicle(){
+        if (Math.random() < 0.75) {
+            int j = rand.nextInt(RaceSettings.colCount-3);
+            if(10<table.length){
+                table[7][0+j] = true;
+                table[7][1+j] = false;
+                table[7][2+j] = true;
+                table[6][0+j] = false;
+                table[6][1+j] = true;
+                table[6][2+j] = false;
+                table[5][0+j] = true;
+                table[5][1+j] = true;
+                table[5][2+j] = true;
+                table[4][0+j] = false;
+                table[4][1+j] = true;
+                table[4][2+j] = false;
             }
-        } else {
-            throw new IllegalArgumentException("Liczba losowanych wierszy jest większa od wielkości planszy!");
         }
     }
+
 }
