@@ -102,7 +102,7 @@ public class ThreadDown extends Thread {
             } catch (InterruptedException ex) {
                 return;
             }
-            race.moveDown(25);
+            race.moveDown(RaceSettings.rowCount-4);
             race.clear(w, k, block.getTable());
             while (race.isPlace(w + 1, k, block.getTable())) {
                 w++;
