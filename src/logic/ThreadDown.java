@@ -22,6 +22,7 @@ public class ThreadDown extends Thread {
     }
 
     private Race race;
+    int intervales;
 
     public Race getRace() {
         return race;
@@ -108,6 +109,12 @@ public class ThreadDown extends Thread {
             interval = RaceSettings.interval;
             try {
                 Thread.sleep(interval);
+                intervales++;
+                if(intervales%5==0){
+                    if(Math.random()<0.88){
+                        race.putRandomVehicle();
+                    }
+                }
             } catch (InterruptedException ex) {
                 return;
             }
