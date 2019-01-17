@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 public class ThreadDown extends Thread {
 
     private Component component;
+    boolean[][] tablea;
+    boolean[][] tableb;
 
     public Component getComponent() {
         return component;
@@ -100,6 +102,16 @@ public class ThreadDown extends Thread {
         component.repaint();
     }
     
+    public void checkCollision(){
+        tablea = race.getTable();
+        for(int i=0;i<tablea.length;i++){
+                if(tablea[w][k] == true){
+                    endGame();
+                }
+        }
+        
+    }
+    
     @Override
     public void run() {
        initializeRace();
@@ -115,6 +127,7 @@ public class ThreadDown extends Thread {
                         race.putRandomVehicle();
                     }
                 }
+                checkCollision();
             } catch (InterruptedException ex) {
                 return;
             }
