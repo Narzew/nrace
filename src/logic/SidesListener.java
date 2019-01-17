@@ -27,27 +27,26 @@ public class SidesListener implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == 37) {
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             threadDown.left();
         }
-        if (e.getKeyCode() == 39) {
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             threadDown.right();
         }
         //Przyśpieszenie opuszczania
-        if (e.getKeyCode() == 40) {
-            if (RaceSettings.interval % 10 == 0) {
-                oldInterval = RaceSettings.interval;
+        if (e.getKeyCode() == KeyEvent.VK_UP) {
+            RaceSettings.interval -=10 ;
+        }
+        // Zwolnienie
+        if(e.getKeyCode() == KeyEvent.VK_DOWN){
+            RaceSettings.interval += 10;
+            if(RaceSettings.interval>RaceSettings.min_interval){
+                RaceSettings.interval = RaceSettings.min_interval;
             }
-            RaceSettings.interval = 55;
         }
     }
-
+    
     @Override
-    public void keyReleased(KeyEvent e) {
-        //Przyśpieszenie opuszczania
-        if (e.getKeyCode() == 40) {
-            RaceSettings.interval = oldInterval;
-        }
-    }
+    public void keyReleased(KeyEvent e){}
 
 }

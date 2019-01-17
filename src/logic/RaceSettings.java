@@ -26,6 +26,10 @@ public class RaceSettings {
      * Szybkość opuszczania klocków.
      */
     public static int interval = 500;
+    /*
+    Minmalna prędkość
+    */
+    public static int min_interval = 500;
     /**
      * Aktualny wynik gry.
      */

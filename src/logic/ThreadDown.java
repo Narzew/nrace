@@ -31,14 +31,14 @@ public class ThreadDown extends Thread {
         this.race = race;
     }
 
-    private Vehicle block;
+    private Vehicle vehicle;
 
     public Vehicle getVehicle() {
-        return block;
+        return vehicle;
     }
 
-    public void setVehicle(Vehicle block) {
-        this.block = block;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     private int w, k;
@@ -60,33 +60,42 @@ public class ThreadDown extends Thread {
     }
 
     public void left() {
-        race.clear(w, k, block.getTable());
-        if (race.isPlace(w, k - 1, block.getTable())) {
+        race.clear(w, k, vehicle.getTable());
+        if (race.isPlace(w, k - 1, vehicle.getTable())) {
             k--;
         }
-        race.draw(w, k, block.getTable());
+        race.draw(w, k, vehicle.getTable());
         component.repaint();
     }
 
     public void right() {
-        race.clear(w, k, block.getTable());
-        if (race.isPlace(w, k + 1, block.getTable())) {
+        race.clear(w, k, vehicle.getTable());
+        if (race.isPlace(w, k + 1, vehicle.getTable())) {
             k++;
         }
-        race.draw(w, k, block.getTable());
+        race.draw(w, k, vehicle.getTable());
         component.repaint();
     }
 
     private int interval;
+    
+    /*
+    Zakończenie gry
+    */
+    public void endGame(){
+        vehicle.setTable(new boolean[1][1]);
+        race.clear();
+        JOptionPane.showMessageDialog(null, "KONEC GRY!!!\nTWÓJ WYNIK "+RaceSettings.score,"KONIEC",JOptionPane.PLAIN_MESSAGE);
+    }
 
     public void initializeRace(){
-        int blockHeight;
-        block = new Vehicle();
+        int vehicleHeight;
+        vehicle = new Vehicle();
         int c = (int) (Math.random() * 5);
-        blockHeight = block.getTable().length;
-        w = RaceSettings.rowCount - blockHeight;
+        vehicleHeight = vehicle.getTable().length;
+        w = RaceSettings.rowCount - vehicleHeight;
         k = RaceSettings.colCount / 2;
-        race.draw(w, k, block.getTable());
+        race.draw(w, k, vehicle.getTable());
         component.repaint();
     }
     
@@ -103,10 +112,10 @@ public class ThreadDown extends Thread {
                 return;
             }
             race.moveDown(RaceSettings.rowCount-4);
-            race.clear(w, k, block.getTable());
-            while (race.isPlace(w + 1, k, block.getTable())) {
+            race.clear(w, k, vehicle.getTable());
+            while (race.isPlace(w + 1, k, vehicle.getTable())) {
                 w++;
-                race.draw(w, k, block.getTable());
+                race.draw(w, k, vehicle.getTable());
                 component.repaint();
                 interval = RaceSettings.interval;
                 try {
@@ -114,16 +123,12 @@ public class ThreadDown extends Thread {
                 } catch (InterruptedException ex) {
                     return;
                 }
-                race.clear(w, k, block.getTable());
+                race.clear(w, k, vehicle.getTable());
             }
-            race.draw(w, k, block.getTable());
+            race.draw(w, k, vehicle.getTable());
             race.delete();
             component.repaint();
         }
-        //Zakończenie gry
-        block.setTable(new boolean[1][1]);
-        race.clear();
-        JOptionPane.showMessageDialog(null, "KONEC GRY!!!\nTWÓJ WYNIK "+RaceSettings.score,"KONIEC",JOptionPane.PLAIN_MESSAGE);
     }
 
 }
