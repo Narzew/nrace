@@ -64,6 +64,10 @@ public class RaceAction {
         }
                 
         threadDown = new ThreadDown();
+        RaceSettings.min_interval = 500;
+        RaceSettings.interval = 500;
+        RaceSettings.temp_score = 0;
+        RaceSettings.score = 0;
         threadDown.setComponent(component);
         createRace();
         threadDown.setRace(race);

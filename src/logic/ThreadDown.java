@@ -113,7 +113,14 @@ public class ThreadDown extends Thread {
                     truetimes++;
                     if(truetimes>1){
                         RaceSettings.temp_score+=1;
-                        RaceSettings.score = (int)RaceSettings.temp_score/5;
+                        RaceSettings.score = (int)RaceSettings.temp_score/7;
+                        if(RaceSettings.score>20){
+                            // Change minimal speed
+                            if(RaceSettings.score%20 == 0){
+                                RaceSettings.min_interval = RaceSettings.min_interval - 20;
+                                RaceSettings.interval = RaceSettings.min_interval;
+                            }
+                        }
                     }
                 }
             }
